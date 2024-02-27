@@ -1,0 +1,115 @@
+body {
+    background-color: #13233c;
+    
+    margin: 0; 
+    padding: 0; 
+    margin-top: 4.375rem; 
+    color: white;
+    
+  }
+ 
+  
+@keyframes scaleAndFlip {
+    0% {
+      opacity: 0;
+      transform: perspective(400px) scale(2) rotateX(-90deg);
+    }
+    100% {
+      opacity: 1;
+      transform: perspective(400px) scale(1) rotateX(0deg);
+    }
+  }
+  
+  
+
+  #contenedolista{
+    display: flex;
+    margin-right: 3.125rem;
+    
+  }
+  #lista{
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    
+  }
+  .link{
+    text-decoration: none; /* Elimina el subrayado */
+    color: inherit; /* Hereda el color del texto de su contenedor */
+    font-size: inherit; /* Hereda el tamaño de fuente de su contenedor */
+    font-weight: inherit;
+  }
+  #contenedor_menu{
+    position: fixed;
+    display: flex;
+    top: 1.25rem;
+    width: 100%;
+    margin-top: 0;
+    font-family: 'Roboto', sans-serif; /* Aplica la fuente Roboto */
+    font-weight: 600; /* Puedes ajustar este valor para cambiar la negrita */
+    color: aliceblue;
+    z-index: 100;
+    justify-content: space-between;
+    background-color: #13233c;
+    transition: top 0.7s ease;   
+    height: 3.125rem; 
+    
+  }
+  .itemList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 5ms ease;
+  }
+  .itemList:hover{
+    color: #be5555;
+    transition: all 500ms ease;
+    border-radius: 20px;
+    border: 2px solid black;
+    background: #0d1624;
+    padding: .3125rem;
+  }
+   
+  #imgLogo{
+    margin-left: 3.125rem;
+    width:3.125rem ;
+    animation: scaleAndFlip 5s ease forwards;
+  }
+  #introduccion{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content:space-between;
+    background-color: transparent;
+    width: 100%;
+    height: 18.75rem;
+
+  }
+  #nombre_banco{
+   
+    margin-left: 6.25rem;
+    font-size: 6.25em;
+
+  }
+  #introimg{
+    margin-right: 18.75rem;
+    height: 50%;
+    animation: move-vector 4s linear infinite;
+    
+  }
+  #contenido{
+    background: #13233c;
+    height: 31.25rem;
+  }
+@keyframes move-vector{
+  0%{
+    transform:translateY(15px) ;
+  }
+  50%{
+    transform:translateY(0px) ;
+  }
+  100%{
+    transform:translateY(15px) ;
+  }
+}
