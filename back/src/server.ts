@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/users", userRouter);
-app.use("/", appointmentRouter);
+app.use("/appointments", appointmentRouter);
 
 
 export default app;
