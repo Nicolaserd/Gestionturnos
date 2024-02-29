@@ -1,16 +1,9 @@
+import ICredential from "./ICredential";
 export default interface IUser {
-    id:string;
+    id:number;
     name:string;
-    phone:number;
     email:string;
-    credential:{
-        password:string;
-        username:string;
-    };
-    appointment:{
-        state:boolean;
-        hora:number;
-        dia:number;
-        mes:number;
-    }
+    birthdate:string;
+    nDni:number;
+    credentialsId:ICredential["id"];
   }

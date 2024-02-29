@@ -1,4 +1,6 @@
 export default interface ICredential {
-    password:string;
+    id:number ;
     username:string;
+    password:string;
+    
   }
