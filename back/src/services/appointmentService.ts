@@ -36,6 +36,16 @@ const appointments: IAppointment[] = [
 function getAppointmentsService(): IAppointment[] {
     return appointments;
 }
+function getAppointmentsServiceById(id:number): IAppointment {
+
+    const appointment = appointments.find(appointment => appointment.id === id);
+
+    if (!appointment) {
+        throw new Error("Turno no encontrado");
+    }
+
+    return appointment;
+}
 
 function createAppointmentsService(date: string, time: string, userId: number): IAppointment {
     
@@ -62,7 +72,7 @@ function createAppointmentsService(date: string, time: string, userId: number): 
     return newAppointments;
 }
 
-function cancelAppointmentsService(appointmentId: number): void {
+function cancelAppointmentsService(appointmentId: number) {
    
     const turnToCancel = appointments.find(appointment => appointment.id === appointmentId);
 
@@ -74,6 +84,7 @@ function cancelAppointmentsService(appointmentId: number): void {
     } else {
         console.log(`No se encontró ningún turno con el ID ${appointmentId}.`);
     }
+    return turnToCancel;
 }
 
-export{getAppointmentsService,createAppointmentsService,cancelAppointmentsService}
+export{getAppointmentsService,createAppointmentsService,cancelAppointmentsService,getAppointmentsServiceById}

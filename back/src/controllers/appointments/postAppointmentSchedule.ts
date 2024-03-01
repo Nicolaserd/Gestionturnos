@@ -1,4 +1,7 @@
 import { Request, Response } from "express";
+import {createAppointmentsService} from "../../services/appointmentService";
 export default (req: Request, res: Response): void => {
-    res.json({"Message":"Cambiar el estatus de un turno a cancelled."});
+    const {date, time, userId}=req.body;
+    let createAppointment = createAppointmentsService(date, time, userId);
+    res.json({"Message":"creado una nueva cita",createAppointment});
   };

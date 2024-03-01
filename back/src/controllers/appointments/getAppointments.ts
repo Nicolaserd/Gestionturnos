@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import {getAppointmentsService} from "../../services/appointmentService";
 export default (req: Request, res: Response): void => {
-    res.json({"Message":"Obtener el listado de todos los turnos de todos los usuarios."});
+  res.status(200).json(getAppointmentsService());
   };

@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import {getUsersService} from "../../services/userServices";
 export default (req: Request, res: Response): void => {
-    res.json({"Message":"Obtener el listado de todos los usuarios."});
+    console.log(getUsersService());
+    res.status(200).json(getUsersService());
   };

@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var userServices_1 = require("../../services/userServices");
 exports.default = (function (req, res) {
-    res.json({ "Message": "Obtener el detalle de un usuario específico." });
+    var userId = parseInt(req.params.id);
+    var getUserById = (0, userServices_1.getUserByIdService)(userId);
+    res.status(200).json(getUserById);
 });

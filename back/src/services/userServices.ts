@@ -45,7 +45,7 @@ function getUserByIdService(id: number): IUser|undefined {
     return users.find(user => user.id === id);
 }
 
-async function createUserService(name: string, email: string, birthdate: string, nDni: number, username: string, password: string): Promise<IUser | undefined>  {
+ function createUserService(name: string, email: string, birthdate: string, nDni: number, username: string, password: string): IUser | undefined {
     
     const credentialsId = createCredentialsService(username, password);
 
