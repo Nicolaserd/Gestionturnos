@@ -1,7 +1,13 @@
 import { Request, Response } from "express";
 import {cancelAppointmentsService} from "../../services/appointmentService";
-export default (req: Request, res: Response): void => {
+export default async (req: Request, res: Response) => {
+  try {
     const {appointmentId}=req.body;
-    let cancelAppointment = cancelAppointmentsService(appointmentId);
-    res.json({"Message":"cancelda la  cita",cancelAppointment});
+    let cancelAppointment = await cancelAppointmentsService(parseInt(appointmentId));
+    res.status(200).json({"Message":"cancelda la  cita",cancelAppointment});
+
+  } catch (error) {
+    console.log(error)
+  }
+   
   };

@@ -1,4 +1,9 @@
 import ICredential from "../interfaces/ICredential";
+import { AppDataSource } from "../config/data-source";
+import { Credential } from "../entities/Credentials";
+import CredentialDto from "../dto/CredentialDto";
+import UserDto from "../dto/UserDto";
+import { User } from "../entities/Users";
 const credentials: ICredential[] = [
     {
         id: 101,
@@ -23,31 +28,41 @@ const credentials: ICredential[] = [
     
 ];
 
- function createCredentialsService(username: string, password: string):number{
-  
-    const newId = credentials.length + 1;
+ async function createCredentialsService(credentials:CredentialDto,userId:number){
+
+    const credentialsCreated = await AppDataSource.getRepository(Credential).create(credentials)
+    const results = await AppDataSource.getRepository(Credential).save(credentialsCreated)
+
+    const userFindById = await AppDataSource.getRepository(User).findOneBy({
+        id: userId
+    })
+    if(userFindById){
+        userFindById.credential = credentialsCreated
+        await AppDataSource.getRepository(User).save(userFindById)
+    }
+    else{
+        throw new Error("Error en usuario");
+    }
     
-   
-    const newCredential: ICredential = {
-        id: newId,
-        username: username,
-        password: password
-    };
-    
-   
-    credentials.push(newCredential);
     
 
-    return newId;
+    return results.id;
 }
 
 
- function validateCredentialsService(username: string, password: string): number|null  {
-    const credential = credentials.find(cred => cred.username === username);
-    if (credential && credential.password === password) {
+ async function validateCredentialsService(credentialsValidate:CredentialDto)  {
+
+    const {username,password} = credentialsValidate;
+    const credential = await AppDataSource.getRepository(Credential).findOneBy({
+        username: username,
+        password:password
+    });
+
+     if (credential) {
         return credential.id;
     }
+
     return null;
-};
+}
 
 export{validateCredentialsService,createCredentialsService};

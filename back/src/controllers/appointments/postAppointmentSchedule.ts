@@ -1,7 +1,14 @@
 import { Request, Response } from "express";
 import {createAppointmentsService} from "../../services/appointmentService";
-export default (req: Request, res: Response): void => {
+export default async (req: Request, res: Response) => {
+  try {
+
     const {date, time, userId}=req.body;
-    let createAppointment = createAppointmentsService(date, time, userId);
-    res.json({"Message":"creado una nueva cita",createAppointment});
+    const createAppointment = await createAppointmentsService(date, time, userId);
+    res.status(200).json(createAppointment);
+
+  } catch (error) {
+    console.log(error);
+  }
+    
   };
