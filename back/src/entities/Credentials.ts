@@ -6,10 +6,10 @@ export class Credential {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("text")
+    @Column({type:"text", unique: true })
     username: string;
 
-    @Column("text")
+    @Column({type:"text", unique: true })
     password: string;
 
     @OneToOne(() => User, (user) => user.credential)

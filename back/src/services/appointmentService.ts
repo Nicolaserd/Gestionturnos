@@ -42,14 +42,14 @@ async function getAppointmentsService() {
             user:true
         }
     })
-    if(users!){
+    if(!users){
         throw new Error("No se encontraron turnos.");
     }
     return users;
 }
 async function getAppointmentsServiceById(id:number) {
 
-    if (id!) {
+    if (!id) {
         throw new Error("El ID de la cita  no esta");
     }
     const appointmentById = await AppDataSource.getRepository(appointment).findOne({
@@ -104,35 +104,33 @@ async function createAppointmentsService(date: string, time: string, userId: num
 }
 
 async function cancelAppointmentsService(appointmentId: number) {
-    const queryRunner = AppDataSource.createQueryRunner()
-    await queryRunner.connect()
-    
-    //! Empieza la Transaction
+    const queryRunner = AppDataSource.createQueryRunner();
+
     try {
-        await queryRunner.startTransaction()
-        const turnToCancel = await getAppointmentsServiceById(appointmentId)
-        
-        if (turnToCancel) {
-            
-            await AppDataSource.getRepository(appointment).merge(turnToCancel,{ status: "cancelled" })
-            await queryRunner.manager.save(turnToCancel);
-            console.log(`El turno con ID ${appointmentId} ha sido cancelado.`);
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
 
-        } else {
-            //!aqui va un error
-        
-            throw new Error(`No se encontró ningún turno con el ID ${appointmentId}.`);
-
+        if (!appointmentId) {
+            throw new Error(`ID de cita vacío`);
         }
+        
+        const turnToCancel = await getAppointmentsServiceById(appointmentId);
+        
+        if (!turnToCancel) {
+            throw new Error(`No se encontró ningún turno con el ID ${appointmentId}.`);
+        }
+
+        await AppDataSource.getRepository(appointment).merge(turnToCancel, { status: "cancelled" });
+        await queryRunner.manager.save(turnToCancel);
+        
+        await queryRunner.commitTransaction();
+
         return turnToCancel;
-    }catch (error:any) {
-
-        queryRunner.rollbackTransaction();
-        throw new Error(error.message);
-
-    }finally{
-
-        queryRunner.release()
+    } catch (error:any) {
+        await queryRunner.rollbackTransaction();
+        return error.message; 
+    } finally {
+        await queryRunner.release();
     }
 }
 

@@ -2,6 +2,7 @@ import { DataSource } from"typeorm";
 import { User } from "../entities/Users";
 import { appointment } from "../entities/Appointments";
 import { Credential } from "../entities/Credentials";
+import { AppointmentSubscriberUpdate, appointmentSubscriber } from "../subscribers";
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: "localhost",
@@ -9,9 +10,10 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "1234nicolas",
     database: "banco",
+    dropSchema: true,
     synchronize: true,
     logging: false,
     entities: [User,appointment,Credential],
-    subscribers: [],
+    subscribers: [appointmentSubscriber,AppointmentSubscriberUpdate],
     migrations: [],
 })

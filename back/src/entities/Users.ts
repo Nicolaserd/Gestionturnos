@@ -16,7 +16,7 @@ export class User {
     @Column("text")
     birthdate: string;
 
-    @Column("integer")
+    @Column({type:"integer", unique: true })
     nDni: number;
 
     @OneToOne(() => Credential, (credential) => credential.user)

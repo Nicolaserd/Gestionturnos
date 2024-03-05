@@ -67,12 +67,11 @@ async function getUserByIdService(id: number) {
 
  async function createUserService(user:UserDto,credential:CredentialDto) {
     
-    // Verificar si al menos uno de los atributos de user está vacío
+   
     if (Object.values(user).some(value => !value)) {
         throw new Error("Los datos del usuario están incompletos");
     }
     
-    // Verificar si al menos uno de los atributos de credential está vacío
     if (Object.values(credential).some(value => !value)) {
         throw new Error("Los datos de credenciales están incompletos");
     }
