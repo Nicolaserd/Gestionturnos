@@ -24,6 +24,6 @@ export class User {
     credential: Credential;
 
     @OneToMany(() => appointment, (appointment) => appointment.user)
-    photos: appointment[]
+    appointment: appointment[]
    
 }

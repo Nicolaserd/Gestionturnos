@@ -5,10 +5,10 @@ export default async (req: Request, res: Response) => {
 
     const {username, password}=req.body;
     let validateCredentials =  validateCredentialsService ({username,password});
-    res.status(201).json({validateCredentials,"message":"credenciales correctas"});
+    res.status(200).json({validateCredentials});
 
-  } catch (error) {
-    
+  } catch (error:any) {
+    res.status(400).json(error.message);
   }
    
   };

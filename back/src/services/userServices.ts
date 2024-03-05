@@ -57,13 +57,32 @@ async function getUserByIdService(id: number) {
 
     const results = await AppDataSource.getRepository(User).findOne({
         where: { id: id },
-        relations: ['credential']
+        relations: ['appointment']
     });
+    if (!results) {
+        throw new Error(`No se encontró ningún usuario con el ID ${id}.`);
+    }
     return results
 }
 
  async function createUserService(user:UserDto,credential:CredentialDto) {
-      
+    
+    // Verificar si al menos uno de los atributos de user está vacío
+    if (Object.values(user).some(value => !value)) {
+        throw new Error("Los datos del usuario están incompletos");
+    }
+    
+    // Verificar si al menos uno de los atributos de credential está vacío
+    if (Object.values(credential).some(value => !value)) {
+        throw new Error("Los datos de credenciales están incompletos");
+    }
+   
+    const queryRunner = AppDataSource.createQueryRunner()
+    await queryRunner.connect()
+    
+    //! Empieza la Transaction
+    await queryRunner.startTransaction()
+try {
     const newUser:UserDto= {
 
         name: user.name,
@@ -74,14 +93,24 @@ async function getUserByIdService(id: number) {
     };
 
     const userCreated = await AppDataSource.getRepository(User).create(newUser)
-    const results = await AppDataSource.getRepository(User).save(userCreated)
-
+    const results = await AppDataSource.getRepository(User).manager.save(userCreated)
+   
     const credentialsId = await createCredentialsService(credential,results.id);
     if(!credentialsId){
-        throw new Error("Credenciales invalidas");
+        throw new Error("Usuario inexistente");
+    }
+    if(!userCreated){
+        throw new Error("Usuario no se ha creado");
     }
 
     return results;
+    
+} catch (error:any) {
+    queryRunner.rollbackTransaction();
+    throw new Error(error.message);
+}finally{
+    queryRunner.release()
+}
 }
 
 export {getUsersService,createUserService,getUserByIdService} ;

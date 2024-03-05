@@ -7,8 +7,8 @@ export default async (req: Request, res: Response) => {
     const createAppointment = await createAppointmentsService(date, time, userId);
     res.status(200).json(createAppointment);
 
-  } catch (error) {
-    console.log(error);
+  } catch (error:any) {
+    res.status(400).json(error.message);
   }
     
   };

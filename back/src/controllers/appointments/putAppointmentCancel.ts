@@ -6,8 +6,8 @@ export default async (req: Request, res: Response) => {
     let cancelAppointment = await cancelAppointmentsService(parseInt(appointmentId));
     res.status(200).json({"Message":"cancelda la  cita",cancelAppointment});
 
-  } catch (error) {
-    console.log(error)
+  } catch (error:any) {
+    res.status(404).json(error.message);
   }
    
   };

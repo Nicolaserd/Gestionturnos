@@ -5,8 +5,8 @@ export default async (req: Request, res: Response) => {
     const userId :number|null = parseInt(req.params.id);
     let getUserById =  await getUserByIdService(userId);
     res.status(200).json(getUserById);
-  } catch (error) {
-    console.log(error)
+  } catch (error:any) {
+    res.status(400).json(error.message)
   }
     
   };

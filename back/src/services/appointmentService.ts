@@ -42,16 +42,22 @@ async function getAppointmentsService() {
             user:true
         }
     })
+    if(users!){
+        throw new Error("No se encontraron turnos.");
+    }
     return users;
 }
 async function getAppointmentsServiceById(id:number) {
 
+    if (id!) {
+        throw new Error("El ID de la cita  no esta");
+    }
     const appointmentById = await AppDataSource.getRepository(appointment).findOne({
         where: { id: id },
         relations: ['user']
     });
     
-    if (!appointment) {
+    if (!appointmentById) {
         throw new Error("Turno no encontrado");
     }
     return appointmentById
@@ -59,40 +65,75 @@ async function getAppointmentsServiceById(id:number) {
 }
 
 async function createAppointmentsService(date: string, time: string, userId: number) {
+
+    if (!date || !time || !userId) {
+        throw new Error(`Datos incompletos`);
+    }
+    const queryRunner = AppDataSource.createQueryRunner()
+    await queryRunner.connect()
     
-    const userExists = await getUserByIdService(userId);
-    if (!userExists) {
-        throw new Error(`No se encontró ningún usuario con el ID ${userId}.`);
+    //! Empieza la Transaction
+    try {
+        await queryRunner.startTransaction()
+
+        const userExists = await getUserByIdService(userId);
+        if (!userExists) {
+            throw new Error(`No se encontró ningún usuario con el ID ${userId}.`);
+        }
+
+    
+        const newAppointment:AppointmentDto = {
+            date: date,
+            time: time,
+            status: "active" 
+        };
+
+        const appointmentCreated = await AppDataSource.getRepository(appointment).create(newAppointment)
+        appointmentCreated.user = userExists
+        await queryRunner.manager.save(appointmentCreated)
+
+        return appointmentCreated;
+        
+    } catch (error:any) {
+        queryRunner.rollbackTransaction();
+        throw new Error(error.message);
+    }finally{
+        queryRunner.release()
     }
 
-  
-    const newAppointment:AppointmentDto = {
-        date: date,
-        time: time,
-        status: "active" 
-    };
-
-    const appointmentCreated = await AppDataSource.getRepository(appointment).create(newAppointment)
-    appointmentCreated.user = userExists
-    await AppDataSource.getRepository(appointment).save(appointmentCreated)
-
-    return appointmentCreated;
 }
 
 async function cancelAppointmentsService(appointmentId: number) {
-   
-    const turnToCancel = await getAppointmentsServiceById(appointmentId)
+    const queryRunner = AppDataSource.createQueryRunner()
+    await queryRunner.connect()
     
-    if (turnToCancel) {
+    //! Empieza la Transaction
+    try {
+        await queryRunner.startTransaction()
+        const turnToCancel = await getAppointmentsServiceById(appointmentId)
         
-        await AppDataSource.getRepository(appointment).merge(turnToCancel,{ status: "cancelled" })
-        await AppDataSource.getRepository(appointment).save(turnToCancel);
-        console.log(`El turno con ID ${appointmentId} ha sido cancelado.`);
+        if (turnToCancel) {
+            
+            await AppDataSource.getRepository(appointment).merge(turnToCancel,{ status: "cancelled" })
+            await queryRunner.manager.save(turnToCancel);
+            console.log(`El turno con ID ${appointmentId} ha sido cancelado.`);
 
-    } else {
-        console.log(`No se encontró ningún turno con el ID ${appointmentId}.`);
+        } else {
+            //!aqui va un error
+        
+            throw new Error(`No se encontró ningún turno con el ID ${appointmentId}.`);
+
+        }
+        return turnToCancel;
+    }catch (error:any) {
+
+        queryRunner.rollbackTransaction();
+        throw new Error(error.message);
+
+    }finally{
+
+        queryRunner.release()
     }
-    return turnToCancel;
 }
 
 export{getAppointmentsService,createAppointmentsService,cancelAppointmentsService,getAppointmentsServiceById}

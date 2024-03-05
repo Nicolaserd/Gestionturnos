@@ -17,7 +17,7 @@ export class appointment {
    @Column("text")
     status: tipoStatus;
 
-    @ManyToOne(() => User, (user) => user.photos)
+    @ManyToOne(() => User, (user) => user.appointment)
     user: User
 
 
