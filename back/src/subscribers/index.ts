@@ -9,10 +9,10 @@ const e_mail = process.env.e_mail
 const e_mail_password = process.env.e_mail_password
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: 'outlook',
     auth: {
-        user: e_mail, 
-        pass: e_mail_password 
+        user: e_mail , 
+        pass: e_mail_password
     }
 });
 
@@ -30,7 +30,7 @@ export class appointmentSubscriber
         const appointmentSubscriber = event.entity;
         
         const mailOptions = {
-            from: e_mail, 
+            from: "nicolasinchaustegui@outlook.com", 
             to: appointmentSubscriber.user.email, 
             subject: `Confirmación de cita para el ${appointmentSubscriber.date}`,
             text: `Le escribo para confirmarle la cita que tenemos programada para el ${appointmentSubscriber.date}, a las ${appointmentSubscriber.time}.` 
@@ -58,7 +58,7 @@ export class AppointmentSubscriberUpdate implements EntitySubscriberInterface<ap
         if(appointmentSubscriberUpdate)
         {
             const mailOptions = {
-                from: e_mail, 
+                from: "nicolasinchaustegui@outlook.com", 
                 to: appointmentSubscriberUpdate.user.email, 
                 subject: `Cancelacion de cita para el ${appointmentSubscriberUpdate.date}`,
                 text: `Le escribo para cancelar la cita que tenemos programada para el ${appointmentSubscriberUpdate.date}, a las ${appointmentSubscriberUpdate.time}.` 
