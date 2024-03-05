@@ -1,6 +1,7 @@
 import { AppDataSource } from "../config/data-source";
 import AppointmentDto from "../dto/AppointmentDto";
 import { appointment } from "../entities/Appointments";
+import { User } from "../entities/Users";
 import IAppointment from"../interfaces/IAppointment";
 import {getUserByIdService} from "./userServices";
 
@@ -87,12 +88,23 @@ async function createAppointmentsService(date: string, time: string, userId: num
             time: time,
             status: "active" 
         };
-
+        
         const appointmentCreated = await AppDataSource.getRepository(appointment).create(newAppointment)
         appointmentCreated.user = userExists
+        userExists.appointment.push(appointmentCreated)
         await queryRunner.manager.save(appointmentCreated)
+        await queryRunner.manager.save(userExists);
 
-        return appointmentCreated;
+        const responseAppointment = {
+            id: appointmentCreated.id,
+            date: appointmentCreated.date,
+            time: appointmentCreated.time,
+            status: appointmentCreated.status,
+            userId: userExists.id
+        };
+
+        await queryRunner.commitTransaction();
+        return responseAppointment;
         
     } catch (error:any) {
         queryRunner.rollbackTransaction();
