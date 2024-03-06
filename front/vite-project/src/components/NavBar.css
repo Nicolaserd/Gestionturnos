@@ -1,14 +1,3 @@
-body {
-    background-color: #13233c;
-    
-    margin: 0; 
-    padding: 0; 
-    margin-top: 4.375rem; 
-    color: white;
-    
-  }
- 
-  
 @keyframes scaleAndFlip {
     0% {
       opacity: 0;
@@ -19,7 +8,11 @@ body {
       transform: perspective(400px) scale(1) rotateX(0deg);
     }
   }
-  
+  #imgLogo{
+    margin-left: 3.125rem;
+    width:3.125rem ;
+    animation: scaleAndFlip 5s ease forwards;
+  }
   
 
   #contenedolista{
@@ -40,7 +33,10 @@ body {
     font-weight: inherit;
   }
   #contenedor_menu{
-    position: fixed;
+    margin-top: .625rem;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    position: sticky;
     display: flex;
     top: 1.25rem;
     width: 100%;
@@ -62,54 +58,7 @@ body {
     transition: all 5ms ease;
   }
   .itemList:hover{
-    color: #be5555;
     transition: all 500ms ease;
-    border-radius: 20px;
-    border: 2px solid black;
     background: #0d1624;
-    padding: .3125rem;
+ 
   }
-   
-  #imgLogo{
-    margin-left: 3.125rem;
-    width:3.125rem ;
-    animation: scaleAndFlip 5s ease forwards;
-  }
-  #introduccion{
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    justify-content:space-between;
-    background-color: transparent;
-    width: 100%;
-    height: 18.75rem;
-
-  }
-  #nombre_banco{
-   
-    margin-left: 6.25rem;
-    font-size: 6.25em;
-
-  }
-  #introimg{
-    margin-right: 18.75rem;
-    height: 50%;
-    animation: move-vector 4s linear infinite;
-    
-  }
-  #contenido{
-    background: #13233c;
-    height: 31.25rem;
-  }
-@keyframes move-vector{
-  0%{
-    transform:translateY(15px) ;
-  }
-  50%{
-    transform:translateY(0px) ;
-  }
-  100%{
-    transform:translateY(15px) ;
-  }
-}
