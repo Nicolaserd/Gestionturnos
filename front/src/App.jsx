@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Home from "./views/Home"
+import MisTurnos from "./views/MisTurnos"
 import './App.css'
 
 function App() {
@@ -7,7 +7,9 @@ function App() {
 
   return (
     <>
-     <Home/>
+     {/* <Home/> */}
+     <MisTurnos/>
+
     </>
   )
 }

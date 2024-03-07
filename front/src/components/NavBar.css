@@ -3,12 +3,13 @@
     justify-content: space-between;
     align-items: center;
     height: 3rem;
-    background-color: #003087;
+    background-color: #0047ab;
     padding: 0 1em;
   }
   
   .navbar-brand {
-    color: #fff;
+    color:#e5e4e2 ;
+    text-shadow: .125rem .125rem .25rem black;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -32,13 +33,19 @@
   }
   
   .nav-link {
-    color: #fff;
+    color:#e5e4e2 ;
+    text-shadow: .125rem .125rem .25rem black;
     text-decoration: none;
     font-size: 1rem;
   }
   
   .navbar-link {
-    color: #fff;
+    color: #e5e4e2  ;
+    text-shadow: .125rem .125rem .25rem black;
     text-decoration: none;
     font-size: 1rem;
+  }
+  .nav-link:hover{
+    color: black;
+    text-shadow: .125rem .125rem .25rem #e5e4e2;
   }

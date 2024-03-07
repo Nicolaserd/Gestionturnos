@@ -11,7 +11,7 @@ const NavBar = () => {
       <ul className="navbar-nav">
         <li className="nav-item">
           <a href="/cuentas" className="nav-link">
-            Cuentas BankSN
+            BANCA FUTURA
           </a>
         </li>
         <li className="nav-item">
@@ -26,7 +26,7 @@ const NavBar = () => {
         </li>
       </ul>
       <a href="/tarjeta-de-credito" className="navbar-link">
-        Solicita tu Tarjeta de Crédito | Hazte cliente
+        Hazte cliente (Registro)
       </a>
     </nav>
   );
