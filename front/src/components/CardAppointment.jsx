@@ -1,16 +1,33 @@
 import React from 'react';
 import './NavBar.css';
+import './CardAppointment.css';
 
-const CardAppointment = ({turno:{date,time,status,userId}}) => {
+const CardAppointment = ({turno:{date,time,status,userId,id}}) => {
     
   return (
     <>
-    <div>
-        <h1>FECHA: {date}</h1>
-        <h1>HORA: {time}</h1>
-        <h1>ESTADO: {status} </h1>
-        <h1>USUARIO: {userId}</h1>
-    </div>
+    
+        <div className="div card__father">
+          <div className="div card">
+            <div className="card__front">
+              <div className="body__card_front">
+                <div className="bg"></div>
+                <h1>CITA NÚMERO {id}</h1>
+              </div>
+            </div>
+            <div className="card__back">
+              <div className="body__card_back">
+                <h1>Usuario : {userId} </h1>
+                <p>
+                  Su cita  esta en estado {status} para el dia {date} a la hora {time}
+                </p>
+                <input type="button" value="leer mas" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+     
     </>
   );
 };

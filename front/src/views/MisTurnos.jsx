@@ -2,26 +2,23 @@ import NavBar from "../components/NavBar.jsx"
 import appointments from "../helpers/myTurns.js"
 import React, { useState } from 'react';
 import CardAppointment from "../components/CardAppointment.jsx";
+import "./MisTurnos.css"
 
-const MisTurnos = () =>{
+const MisTurnos = () => {
     const [turnos, setTurnos] = useState(appointments);
-    return(
+
+    return (
         <>
             <NavBar/>
-
-           <div>
-                <h1>Mis Turnos</h1>
-                <div>
+            <section>
+                <div className="container__card">
                     {turnos.map((turno) => {
-                        return  <CardAppointment key={turno.id} turno={turno}/>
-                    }
-                    )}
-                    
+                        return <CardAppointment key={turno.id} turno={turno}/>
+                    })}
                 </div>
-            </div>
-
+            </section>
         </>
     )
 }
 
-export default MisTurnos
+export default MisTurnos;

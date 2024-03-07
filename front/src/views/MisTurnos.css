@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .container__card {
+    max-width: 75rem;
+    margin: auto;
+    margin-top: 6.25rem;
+    perspective: 62.5rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
