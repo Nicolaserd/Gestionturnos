@@ -12,3 +12,92 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+  .misTurnosTitulo {
+    font-size: 6.25rem;
+    color: #efb810;
+    text-shadow: 0.125rem 0.125rem 0.5rem black;
+}
+
+.container_h1_logo{
+  margin-top: 3.125rem;
+  gap: 6.25rem;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.container_logo{
+  height: 9.375rem;
+  width: 6.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  perspective: 31.25rem;
+}
+
+.logo_h1{
+  width: 8rem;
+  height: 6.1875rem;
+  background: url("../assets/CARDALAS-fotor-bg-remover-2024022616401.png");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: -0.625rem;
+  filter: drop-shadow(0rem .3125rem .625rem #efb810);
+  animation: rotar 7s linear infinite;
+}
+
+.logo_h1:hover{
+  cursor: pointer;
+}
+
+@keyframes rotar{
+  from{
+      transform: rotateY(0deg);
+  }
+  to{
+      transform: rotateY(-360deg);
+  }
+}
+
+.bottom_part{
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  bottom: -5.875rem;
+  background: #242424;
+  border-radius: 50%;
+  box-shadow: inset 0rem 0rem .625rem .625rem #11111136;
+  transform: rotateX(90deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom_part::before{
+  content: "";
+  width: 8rem;
+  height: 8rem;
+  position: absolute;
+  bottom: 5rem;
+  background: #efb810;
+  border-radius: 50%;
+  box-shadow: inset 0rem 0rem .625rem .625rem #11111136;
+  filter: blur(1.875rem);
+  animation: Animate 1s linear infinite;
+}
+
+@keyframes Animate {
+  from{
+      width: 8rem;
+      height: 8rem;
+  }
+  50%{
+      width: 6rem;
+      height: 6rem;
+  }
+  to{
+      width: 8rem;
+      height: 8rem;
+  }
+}

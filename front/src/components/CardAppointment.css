@@ -2,6 +2,7 @@
   .card__father {
     margin: 1.25rem;
     perspective: 62.5rem;
+   
   }
   
   .card__father:hover .card {
@@ -9,8 +10,8 @@
   }
   
   .card {
-    width: 21.875rem;
-    height: 25rem;
+    width: 15.625rem;
+    height: 15.625rem;
     position: relative;
     transform-style: preserve-3d;
     transition: all 700ms;
@@ -26,6 +27,7 @@
     backface-visibility: hidden;
     transform-style: preserve-3d;
     border-radius: 1.25rem;
+    box-shadow: 0.0625rem 0.0625rem 1.875rem -0.3125rem green;
   }
   
   .card__back {
