@@ -1,0 +1,93 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 18.75rem; 
+    margin: 5rem auto;
+    padding: 1.25rem;
+    border: .0625rem solid #ccc;
+    border-radius: .25rem;
+    box-shadow: 0 .25rem .375rem rgba(0, 0, 0, 0.1);
+    align-items: center;
+    
+  }
+  .form h1 {
+    color: #4a86e8;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    animation: pulse 3s ease-in-out infinite;
+   
+    
+  }
+  
+  .form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .625rem;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .form input[type="text"],
+  .form input[type="password"] {
+    border: .0625rem solid #ccc;
+    border-radius: .25rem;
+    padding: .5rem;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .form input[type="text"]:focus,
+  .form input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 .25rem .375rem rgba(102, 175, 233, 0.5);
+    
+  }
+  
+  .form button {
+    background-color: #ffd700;
+    border: none;
+    border-radius: .25rem;
+    padding: .625rem 1.25rem;
+    font-size: 1.2rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .form button:hover {
+    background-color: #e0b90f;
+  }
+
+.form__error {
+    max-width: 100%;
+    margin: 0;
+    font-size: 0.6rem;
+    text-align: left;
+    
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+        text-shadow: 0px 5px 10px #17ef10 ;
+        
+    }
+    50% {
+        text-shadow: 0px 10px 20px #efb810 ;
+    }
+    100% {
+        text-shadow: 0px 5px 10px #10e8ef ;
+    }
+  }

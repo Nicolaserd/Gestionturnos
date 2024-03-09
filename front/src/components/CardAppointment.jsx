@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './NavBar.css';
 import './CardAppointment.css';
+import axios from 'axios';
 
-const CardAppointment = ({turno:{date,time,status,user,id}}) => {
+const CardAppointment = ({turno:{date,time,status,user,id},onCancelarCita}) => {
+   
+   const handleClick = ()=>{
+
+    onCancelarCita(id);
+    
+  };
     
   return (
     <>
@@ -21,7 +28,7 @@ const CardAppointment = ({turno:{date,time,status,user,id}}) => {
                 <p>
                   Su cita  esta en estado   <span style={status === "active" ? { color: "green" } : { color: "red" }}>{status === "active" ? "activa" : "cancelada"} </span> para el dia {date} a la hora {time}
                 </p>
-                <input type="button" value="Cancelar cita" />
+                <input type="button"   onClick={handleClick} value="Cancelar cita" />
               </div>
             </div>
           </div>

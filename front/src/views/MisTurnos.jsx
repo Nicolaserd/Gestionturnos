@@ -12,7 +12,27 @@ const MisTurnos = () => {
         axios.get('http://localhost:3000/appointments').then((res)=>setTurnos(res.data));
     },[])
 
- 
+    const handleCancelarCita = (id) => {
+        
+        axios.put(`http://localhost:3000/appointments/cancel/${id}`)
+        .then(response => {
+          alert(
+            `cita con id ${id} : ${response.data.Message}
+             
+            `)
+            window.location.reload();
+        })
+        .catch(error => {
+          alert(
+            `cita con id ${id} : no se cancelo ${error.status}
+             
+            `)
+            window.location.reload();
+        });
+
+        
+        
+      };
    
 
     return (
@@ -33,7 +53,7 @@ const MisTurnos = () => {
             <section>
                 <div className="container__card">
                     {turnos.map((turno) => {
-                        return <CardAppointment key={turno.id} turno={turno}/>
+                        return <CardAppointment key={turno.id} turno={turno} onCancelarCita={handleCancelarCita}/>
                     })}
                 </div>
             </section>
