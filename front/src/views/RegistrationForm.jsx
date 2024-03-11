@@ -104,7 +104,7 @@ useEffect(()=>{
 
  return (
   <>
-  <NavBar/>
+  
   <Form onSubmit={handleSubmit}>
     <Title>REGISTER</Title>
     <Label htmlFor="name">Name *:</Label>
@@ -158,10 +158,10 @@ useEffect(()=>{
     {errors.birthdate && <ErrorMessage>{errors.birthdate}</ErrorMessage>}
     <Label htmlFor="nDni">National ID Number *:</Label>
     <Input
-      type="text"
+      type="number"
       id="nDni"
       value={nDni}
-      onChange={(event) => setNDni(event.target.value)}
+      onChange={(event) => setNDni(parseInt(event.target.value))}
     />
     {errors.nDni && <ErrorMessage>{errors.nDni}</ErrorMessage>}
 

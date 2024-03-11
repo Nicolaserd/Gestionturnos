@@ -12,7 +12,7 @@ export const nameEmailNdniUsernameValidation = (name, email, nDni, username) => 
     }
 
    
-    if (!email.includes("@") || !isValidEmail(email)) {
+    if ( !isValidEmail(email)) {
         errores.emailv = "El correo electrónico no es válido.";
     }
 

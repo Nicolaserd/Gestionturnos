@@ -95,7 +95,7 @@ const handleOnSubmitLogin =  (event) => {
 
 return (
     <>
-    <NavBar/>
+  
     <form onSubmit={handleOnSubmitLogin} className={styles.form}>
       <h1 className={styles.form__title}>LOGIN</h1>
       <label className={styles.form__label}>

@@ -37,7 +37,7 @@ const MisTurnos = () => {
 
     return (
         <>
-            <NavBar/>
+            
 
             <div className="container_h1_logo">
 

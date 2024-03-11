@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../assets/CARDALAS-fotor-bg-remover-2024022616401.png';
 import './NavBar.css';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -10,24 +11,30 @@ const NavBar = () => {
       </a>
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a href="/cuentas" className="nav-link">
+          <NavLink to="/" className="nav-link">
             BANCA FUTURA
-          </a>
+          </NavLink>
         </li>
         <li className="nav-item">
-          <a href="/personas" className="nav-link">
-            PERSONAS
-          </a>
+
+          <NavLink to="/LoginForm" className="nav-link">
+           PERSONAS
+          </NavLink>
+         
         </li>
         <li className="nav-item">
-          <a href="/empresas" className="nav-link">
-            EMPRESAS
-          </a>
+       
+        <NavLink to="/MisTurnos" className="nav-link">
+         TURNOS
+        </NavLink>
+         
         </li>
       </ul>
-      <a href="/tarjeta-de-credito" className="navbar-link">
+    
+      <NavLink to="/RegistrationForm" className="nav-link">
         Hazte cliente (Registro)
-      </a>
+      </NavLink>
+     
     </nav>
   );
 };
