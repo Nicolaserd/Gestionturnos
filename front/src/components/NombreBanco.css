@@ -1,0 +1,87 @@
+
+.containercardNombreBanco{
+    margin: 6.25rem auto ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    gap: 3.125rem;
+    padding: 1.25rem;
+    border: .1875rem solid white;
+    border-radius: 2%;
+}
+.cardNombreBanco{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15.625rem;
+    width: 21.875rem;
+    border-radius: 10%;
+    background-color: #181818;
+    box-shadow: .875rem 1.25rem 1.875rem #101010;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.cardNombreBanco::before{
+    content: "";
+    height: 25rem;
+    width: 28.125rem;
+    border-radius: 10%;
+    position:absolute;
+    background-image: conic-gradient(#efb810 50deg, transparent 120deg);
+    animation: rotarInBanco 4s linear infinite;
+    
+}
+
+@keyframes rotarInBanco{
+    form{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
+
+.cardNombreBanco::after{
+    content: "";
+    height: 15rem;
+    width: 21.25rem;
+    border-radius: 10%;
+    position:absolute;
+    background-color: #181818;
+    box-shadow: inset .875rem 1.25rem 1.875rem #101010;
+}
+.NombreBancoCard{
+    color: #efb810;
+    z-index: 2;
+    font-size: 2.5em;
+    background-color: transparent;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-shadow: .3125rem .3125rem .3125rem black;
+}
+.QuienesSomosInicio{
+    width: 37.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.875rem;
+}
+.tituloQuienesSomos{
+    font-size: 1.25em;
+    color: #4a86e8;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: .3125rem .3125rem .3125rem black;
+}
+.contenidoQuienesSomos{
+
+    font-size: .9375em;
+    color: #eff3f8;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: .3125rem .3125rem .3125rem black;
+    text-align: justify;
+
+}

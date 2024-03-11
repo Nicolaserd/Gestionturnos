@@ -10,9 +10,9 @@ function App() {
 
   return (
     <>
-     {/* <Home/> */}
+     <Home/>
      {/* <MisTurnos/> */}
-     <LoginForm/>
+     {/* <LoginForm/> */}
      {/* <RegistrationForm/> */}
     </>
   )

@@ -106,8 +106,8 @@ useEffect(()=>{
   <>
   <NavBar/>
   <Form onSubmit={handleSubmit}>
-    <Title>Register</Title>
-    <Label htmlFor="name">Name:</Label>
+    <Title>REGISTER</Title>
+    <Label htmlFor="name">Name *:</Label>
     <Input
       type="text"
       id="name"
@@ -116,7 +116,7 @@ useEffect(()=>{
     />
     {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
 
-    <Label htmlFor="email">Email:</Label>
+    <Label htmlFor="email">Email *:</Label>
     <Input
       type="email"
       id="email"
@@ -124,7 +124,7 @@ useEffect(()=>{
       onChange={(event) => setEmail(event.target.value)}
     />
     {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
-    <Label>Birthdate:</Label>
+    <Label>Birthdate *:</Label>
     <BirthdateContainer>
       
       <Select
@@ -156,7 +156,7 @@ useEffect(()=>{
       </Select>
     </BirthdateContainer>
     {errors.birthdate && <ErrorMessage>{errors.birthdate}</ErrorMessage>}
-    <Label htmlFor="nDni">National ID Number:</Label>
+    <Label htmlFor="nDni">National ID Number *:</Label>
     <Input
       type="text"
       id="nDni"
@@ -165,7 +165,7 @@ useEffect(()=>{
     />
     {errors.nDni && <ErrorMessage>{errors.nDni}</ErrorMessage>}
 
-    <Label htmlFor="username">Username:</Label>
+    <Label htmlFor="username">Username *:</Label>
     <Input
       type="text"
       id="username"
@@ -173,7 +173,7 @@ useEffect(()=>{
       onChange={(event) => setUsername(event.target.value)}
     />
     {errors.username && <ErrorMessage>{errors.username}</ErrorMessage>}
-    <Label htmlFor="password">Password:</Label>
+    <Label htmlFor="password">Password *:</Label>
     <Input
       type="password"
       id="password"
@@ -181,7 +181,7 @@ useEffect(()=>{
       onChange={(event) => setPassword(event.target.value)}
     />
     {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
-    <Label htmlFor="Confirmpassword">Confirm password:</Label>
+    <Label htmlFor="Confirmpassword">Confirm password *:</Label>
     <Input
       type="password"
       id="Confirmpassword"
