@@ -17,10 +17,9 @@ export const nameEmailNdniUsernameValidation = (name, email, nDni, username) => 
     }
 
     
-    if (nDni.length < 5) {
-        errores.nDniv = "El número de DNI debe tener al menos 5 caracteres.";
+    if (nDni.length < 5 || nDni.length > 10) {
+        errores.nDniv = "El número de DNI debe tener entre 5 y 10 caracteres.";
     }
-
     
     if (username.length < 3) {
         errores.usernamev = "El nombre de usuario debe tener al menos 3 caracteres.";

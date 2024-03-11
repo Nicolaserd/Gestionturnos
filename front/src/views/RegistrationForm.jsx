@@ -158,10 +158,10 @@ useEffect(()=>{
     {errors.birthdate && <ErrorMessage>{errors.birthdate}</ErrorMessage>}
     <Label htmlFor="nDni">National ID Number *:</Label>
     <Input
-      type="number"
+      type="text"
       id="nDni"
       value={nDni}
-      onChange={(event) => setNDni(parseInt(event.target.value))}
+      onChange={(event) => setNDni(event.target.value)}
     />
     {errors.nDni && <ErrorMessage>{errors.nDni}</ErrorMessage>}
 

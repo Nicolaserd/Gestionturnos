@@ -75,6 +75,10 @@ async function getUserByIdService(id: number) {
     if (Object.values(credential).some(value => !value)) {
         throw new Error("Los datos de credenciales están incompletos");
     }
+    if (user.nDni < -2147483648 || user.nDni > 2147483647) {
+        throw new Error("ndni número está fuera del rango");
+        
+    }
    
     const queryRunner = AppDataSource.createQueryRunner()
     await queryRunner.connect()
