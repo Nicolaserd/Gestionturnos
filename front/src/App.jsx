@@ -10,8 +10,8 @@ function App() {
 
   return (
     <>
-     <Home/>
-     {/* <MisTurnos/> */}
+     {/* <Home/> */}
+     <MisTurnos/>
      {/* <LoginForm/> */}
      {/* <RegistrationForm/> */}
     </>

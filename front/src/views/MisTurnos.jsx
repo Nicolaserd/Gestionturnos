@@ -20,14 +20,14 @@ const MisTurnos = () => {
             `cita con id ${id} : ${response.data.Message}
              
             `)
-            window.location.reload();
+            axios.get('http://localhost:3000/appointments').then((res)=>setTurnos(res.data));
         })
         .catch(error => {
           alert(
             `cita con id ${id} : no se cancelo ${error.status}
              
             `)
-            window.location.reload();
+           
         });
 
         
