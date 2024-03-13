@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './NavBar.css';
 import './CardAppointment.css';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const CardAppointment = ({turno:{date,time,status,user,id},onCancelarCita}) => {
    
@@ -10,7 +11,8 @@ const CardAppointment = ({turno:{date,time,status,user,id},onCancelarCita}) => {
     onCancelarCita(id);
     
   };
-    
+  const name = useSelector(state=> state.user.user.user.name)
+  
   return (
     <>
        
@@ -24,7 +26,7 @@ const CardAppointment = ({turno:{date,time,status,user,id},onCancelarCita}) => {
             </div>
             <div className="card__back" style={status === "active" ? { boxShadow: "0.0625rem 0.0625rem 1.875rem -0.3125rem #2fff00" } : {  boxShadow: "0.0625rem 0.0625rem 1.875rem -0.3125rem #ff000e"  }}>
               <div className="body__card_back">
-                <h1>Usuario : {user.name} </h1>
+                <h1>Usuario : {name} </h1>
                 <p>
                   Su cita  esta en estado   <span style={status === "active" ? { color: "green" } : { color: "red" }}>{status === "active" ? "activa" : "cancelada"} </span> para el dia {date} a la hora {time}
                 </p>

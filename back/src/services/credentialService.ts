@@ -34,15 +34,20 @@ async function validateCredentialsService(credentialsValidate:CredentialDto)  {
         if (Object.values(credentialsValidate).some(value => !value)) {
             throw new Error("Los datos de sus credenciales están incompletos")
         }
+
+        
         
         const {username,password} = credentialsValidate;
-        const credential = await AppDataSource.getRepository(Credential).findOneBy({
-            username: username,
-            password:password
+        const credential = await AppDataSource.getRepository(Credential).findOne({
+            where: { username: username,
+                    password:password},
+                    relations: ['user']
         });
-    
+       
+        
     
          if (credential) {
+           
             return {
                 login:true,
                 user:credential.user

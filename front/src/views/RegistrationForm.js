@@ -17,6 +17,17 @@ export const Label = styled.label`
   font-weight: bold;
   color: #ccc;;
   margin-bottom: .3125rem;
+  animation: fadeInA 0.5s ease-in-out;
+  @keyframes fadeInA {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const Input = styled.input`
@@ -30,6 +41,17 @@ export const Input = styled.input`
     outline: none;
     box-shadow: 0 0 .3125rem rgba(0, 123, 255, 0.5);
   }
+  animation: fadeInA 0.5s ease-in-out;
+  @keyframes fadeInA {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const Select = styled.select`
@@ -38,6 +60,17 @@ export const Select = styled.select`
   padding: .625rem;
   font-size: 1rem;
   margin-bottom: .625rem;
+  animation: fadeInA 0.5s ease-in-out;
+  @keyframes fadeInA {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const ErrorMessage = styled.p`
@@ -58,6 +91,17 @@ export const Button = styled.button`
   &:hover {
     background-color: #e0b90f;
   }
+  animation: fadeInA 0.5s ease-in-out;
+  @keyframes fadeInA {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 export const Title = styled.h1`
@@ -68,14 +112,14 @@ export const Title = styled.h1`
   animation: pulse 3s ease-in-out infinite;
   @keyframes pulse {
     0% {
-        text-shadow: 0rem .3125rem .625rem #17ef10 ;
+        text-shadow: 0px 5px 10px #17ef10 ;
         
     }
     50% {
-        text-shadow: 0rem .625rem 1.25rem #efb810 ;
+        text-shadow: 0px 10px 20px #efb810 ;
     }
     100% {
-        text-shadow: 0rem .3125rem .625rem #10e8ef ;
+        text-shadow: 0px 5px 10px #10e8ef ;
     }
 `;
 
@@ -83,4 +127,15 @@ export const BirthdateContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1.25rem;
+  animation: fadeInA 0.5s ease-in-out;
+  @keyframes fadeInA {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;

@@ -1,0 +1,86 @@
+.formContainerA {
+  background-color: transparent;
+  max-width: 18.75rem; 
+    margin: 5rem auto;
+    padding: 1.25rem;
+    border: .0625rem solid #ccc;
+    border-radius: .25rem;
+    box-shadow: 0 .25rem .375rem rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+.formContainerA h1 {
+  color: #4a86e8;
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    animation: pulseA 3s ease-in-out infinite;
+}
+
+.formContainerA label {
+  display: block;
+  margin-bottom: .3125rem;
+  color: #fff;
+  animation: fadeInA 0.5s ease-in-out;
+}
+
+.formContainerA input[type="date"],
+.formContainerA input[type="time"] {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  color: #007bff;
+  text-align: center;
+  animation: fadeInA 0.5s ease-in-out;
+}
+
+
+.formContainerA input[type="time"]::-webkit-inner-spin-button,
+.formContainerA input[type="time"]::-webkit-outer-spin-button {
+  opacity: 0;
+}
+
+.formContainerA button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffce00;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  animation: fadeInA 0.5s ease-in-out;
+}
+
+.formContainerA button[type="submit"]:hover {
+  background-color: #e0b90f;
+}
+
+@keyframes fadeInA {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseA {
+  0% {
+      text-shadow: 0px 5px 10px #17ef10 ;
+      
+  }
+  50% {
+      text-shadow: 0px 10px 20px #efb810 ;
+  }
+  100% {
+      text-shadow: 0px 5px 10px #10e8ef ;
+  }
+}

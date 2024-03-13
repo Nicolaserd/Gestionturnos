@@ -2,8 +2,17 @@ import React from 'react';
 import logo from '../assets/CARDALAS-fotor-bg-remover-2024022616401.png';
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOutUser } from '../../redux/reducer';
 
 const NavBar = () => {
+  const login = useSelector(state=> state.user.user.login)
+ 
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOutUser())
+  
+  };
   return (
     <nav className="navbar">
       <a href="/" className="navbar-brand">
@@ -17,23 +26,48 @@ const NavBar = () => {
         </li>
         <li className="nav-item">
 
+         {
+          login!==true?
           <NavLink to="/LoginForm" className="nav-link">
            PERSONAS
-          </NavLink>
+          </NavLink>:true
+          }
          
         </li>
         <li className="nav-item">
        
-        <NavLink to="/MisTurnos" className="nav-link">
-         TURNOS
-        </NavLink>
+        
+          {
+            login===true?
+            <NavLink to="/MisTurnos" className="nav-link">
+               CITAS
+            </NavLink>:null
+          }
+        
+         
+        </li>
+        <li className="nav-item">
+       
+        
+          {
+            login===true?
+            <NavLink to="/AgendarCita" className="nav-link">
+               AGENDAR CITA
+            </NavLink>:null
+          }
+        
          
         </li>
       </ul>
     
-      <NavLink to="/RegistrationForm" className="nav-link">
-        Hazte cliente (Registro)
-      </NavLink>
+      {
+        login===true?
+        <NavLink to="/" className="nav-link" onClick={handleLogout}>
+         LOG OUT
+        </NavLink>:<NavLink to="/RegistrationForm" className="nav-link">
+          Hazte cliente (Registro)
+        </NavLink>
+      }
      
     </nav>
   );

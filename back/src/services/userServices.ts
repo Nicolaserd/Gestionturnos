@@ -50,6 +50,7 @@ import { User } from "../entities/Users";
             credential:true
         }
     })
+    
     return users;
 }
 
@@ -62,6 +63,7 @@ async function getUserByIdService(id: number) {
     if (!results) {
         throw new Error(`No se encontró ningún usuario con el ID ${id}.`);
     }
+   
     return results
 }
 

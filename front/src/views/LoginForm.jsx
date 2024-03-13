@@ -4,8 +4,13 @@ import { validate } from '../helpers/validate';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
 import styles from './LoginForm.module.css';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addUser } from '../../redux/reducer';
 const LoginForm = () => {
 
+const dispatch = useDispatch();
+const navigate = useNavigate();
 
 const [userData, setUserData] = useState({
     username:"",
@@ -54,10 +59,12 @@ const handleOnSubmitLogin =  (event) => {
 
             axios.post('http://localhost:3000/users/login', userData)
             .then(response => {
+              dispatch(addUser(response.data))
               alert(
                 `username: ${userData.username}
-                 Ingreso con exito
+                 Ingreso con exito : ${response.data.user.name}
                 `)
+                navigate("/")
               
             })
             .catch(error => {
