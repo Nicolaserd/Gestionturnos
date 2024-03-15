@@ -38,6 +38,7 @@
   
   .card__front {
     background-image: url("../assets/pexels-francesco-ungaro-998641.jpg");
+    background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
   }

@@ -16,7 +16,7 @@ const MisTurnos = () => {
     
     const [tituloCitas,setTituloCitas] = useState("MIS CITAS");
     useEffect(()=>{
-        console.log(actualUserId)
+
         axios.get(`http://localhost:3000/users/${actualUserId}`).then((res)=>dispatch(addUserAppointments(res.data.appointment))).then(res=>console.log(res));
         
     },[])
@@ -62,7 +62,7 @@ const MisTurnos = () => {
             
             </div>
             {turnos.length===0?
-            <h1>Aún no hay turnos agendados para {nameUser}</h1>:null}
+            <h1 className="tituloNoHayTurnos">Aún no hay turnos agendados para {nameUser}</h1>:null}
             <section>
                 <div className="container__card">
                     {turnos?.map((turno) => {

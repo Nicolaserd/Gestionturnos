@@ -101,3 +101,10 @@
       height: 8rem;
   }
 }
+.tituloNoHayTurnos{
+    font-size: 3.25rem;
+    margin-top: 7.125rem;
+    color: #4a86e8;
+    text-shadow: 0.125rem 0.125rem 0.5rem black;
+    text-align: center;
+}

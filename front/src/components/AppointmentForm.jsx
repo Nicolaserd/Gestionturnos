@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import styles from './AppointmentForm.module.css';
+import { useSelector } from 'react-redux';
 
 const AppointmentForm = () => {
   const [appointment, setAppointment] = useState({
@@ -12,12 +13,12 @@ const AppointmentForm = () => {
     const { name, value } = event.target;
     setAppointment({ ...appointment, [name]: value });
   };
-
+  const actualUserId = useSelector(state=> state.user.user?.user.id)
   const handleSubmit = (event) => {
     event.preventDefault();
     let appointmentSchedule= {
        ...appointment,
-        userId:1
+        userId:actualUserId
     }
     console.log(appointmentSchedule)
     axios.post('http://localhost:3000/appointments/schedule', appointmentSchedule)

@@ -21,7 +21,7 @@ const CardAppointment = ({turno:{date,time,status,user,id},onCancelarCita}) => {
             <div className="card__front" style={status === "active" ? { boxShadow: "0.0625rem 0.0625rem 1.875rem -0.3125rem #2fff00" } : {  boxShadow: "0.0625rem 0.0625rem 1.875rem -0.3125rem #ff000e"  }}>
               <div className="body__card_front">
                 <div className="bg"></div>
-                <h1 style={status === "active" ? { color: "#2fff00" } : { color: "#ff000e" }}>CITA NÚMERO {id}</h1>
+                <h1 style={status === "active" ? { color: "#2fff00" } : { color: "#ff000e" }}>CITA  {date}</h1>
               </div>
             </div>
             <div className="card__back" style={status === "active" ? { boxShadow: "0.0625rem 0.0625rem 1.875rem -0.3125rem #2fff00" } : {  boxShadow: "0.0625rem 0.0625rem 1.875rem -0.3125rem #ff000e"  }}>

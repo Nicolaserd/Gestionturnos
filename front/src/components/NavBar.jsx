@@ -3,7 +3,7 @@ import logo from '../assets/CARDALAS-fotor-bg-remover-2024022616401.png';
 import './NavBar.css';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOutUser } from '../../redux/reducer';
+import { logOutUser,logOutUserAppointments } from '../../redux/reducer';
 
 const NavBar = () => {
   const login = useSelector(state=> state.user.user.login)
@@ -11,13 +11,14 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logOutUser())
+    dispatch(logOutUserAppointments())
   
   };
   return (
     <nav className="navbar">
-      <a href="/" className="navbar-brand">
+      <NavLink to="/" className="navbar-brand">
         <img src={logo} alt="Logo" className="logo" />
-      </a>
+      </NavLink>
       <ul className="navbar-nav">
         <li className="nav-item">
           <NavLink to="/" className="nav-link">

@@ -29,12 +29,15 @@ export const userAppointmentsSlice = createSlice({
         addUserAppointments:(state,action)=>{
           state.userAppointments.appointments  = action.payload;
         }, 
+        logOutUserAppointments:(state,action)=>{
+            state.userAppointments.appointments  = [] ;
+          }
        
     }
 })
 
 export const {addUser,logOutUser} = userSlice.actions
-export const {addUserAppointments} = userAppointmentsSlice.actions
+export const {addUserAppointments,logOutUserAppointments} = userAppointmentsSlice.actions
 export default userSlice.reducer
 export const reducers = {
     user: userSlice,
