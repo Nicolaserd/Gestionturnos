@@ -65,19 +65,9 @@ Para facilitar este proceso, la plataforma ofrece formularios de registro detall
 - Seleccionar la cita a cancelar.
 - Confirmar la cancelación.
 
-### Reprogramar
-- Acceder a la sección de citas programadas.
-- Seleccionar la cita a reprogramar.
-- Seleccionar nueva fecha y hora.
 
 ### Confirmar cita
 - Recibir correo electrónico de confirmación.
-- Confirmar cita mediante enlace o botón proporcionado.
-
-### Editar usuario
-- Subir foto de perfil.
-- Cambiar contraseña.
-- Cambiar dirección de correo electrónico.
 
 
 ## DB diseño
