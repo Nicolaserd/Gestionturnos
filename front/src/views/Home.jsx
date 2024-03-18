@@ -8,9 +8,6 @@ const Home = () =>{
     return(
         <>  
           
-         
-           
-           
             <NombreBanco/>
 
             <Servicios/>
