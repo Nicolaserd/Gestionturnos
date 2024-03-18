@@ -33,7 +33,7 @@ const MisTurnos = () => {
         })
         .catch(error => {
           alert(
-            `cita con id ${id} : no se cancelo ${error.status}
+            `cita con id ${id} : no se cancelo ${error.response.data.error}
              
             `)
            

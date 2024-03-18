@@ -32,9 +32,10 @@ const AppointmentForm = () => {
    
   })
   .catch(error => {
+    
     alert(
         `
-        'Error al programar la cita:' ${error.response.data}
+        'Error al programar la cita:' ${error.response.data.error}
         `)
   });
     setAppointment({  date: '', time: '' });
