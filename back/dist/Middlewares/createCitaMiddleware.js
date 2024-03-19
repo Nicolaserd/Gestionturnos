@@ -35,25 +35,32 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var credentialService_1 = require("../../services/credentialService");
-exports.default = (function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, username, password, validateCredentials, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, username = _a.username, password = _a.password;
-                return [4, (0, credentialService_1.validateCredentialsService)({ username: username, password: password })];
-            case 1:
-                validateCredentials = _b.sent();
-                res.status(200).json(validateCredentials);
-                return [3, 3];
-            case 2:
-                error_1 = _b.sent();
-                res.status(400).json(error_1.message);
-                return [3, 3];
-            case 3: return [2];
-        }
+var moment_1 = __importDefault(require("moment"));
+function createCitaMiddleware(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, date, time, userId, datetimeStr, datetimeFormat, currentDatetime, inputDatetime;
+        return __generator(this, function (_b) {
+            _a = req.body, date = _a.date, time = _a.time, userId = _a.userId;
+            datetimeStr = date + ' ' + time;
+            datetimeFormat = 'YYYY-MM-DD HH:mm';
+            currentDatetime = (0, moment_1.default)();
+            inputDatetime = (0, moment_1.default)(datetimeStr, datetimeFormat);
+            if (!inputDatetime.isValid()) {
+                return [2, res.status(400).json({ error: "Formato de fecha/hora inválido." })];
+            }
+            if (inputDatetime.isBefore(currentDatetime)) {
+                return [2, res.status(400).json({ error: "La fecha/hora proporcionada está en el pasado." })];
+            }
+            if (inputDatetime.isSame(currentDatetime, 'day')) {
+                return [2, res.status(400).json({ error: "No se puede programar una cita para el día actual." })];
+            }
+            next();
+            return [2];
+        });
     });
-}); });
+}
+exports.default = createCitaMiddleware;

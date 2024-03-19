@@ -12,7 +12,7 @@ async function cancelCitaMiddleware(req: Request, res: Response, next: NextFunct
     });
 
     if (existingAppointment?.status==="cancelled") {
-        return res.status(400).json({ error: "Cita ya cancelada" });
+        return res.status(400).json({ error: "Cita ya cancelada" }); 
     }
     
     // Validar la fecha y hora

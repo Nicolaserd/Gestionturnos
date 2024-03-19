@@ -36,24 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var credentialService_1 = require("../../services/credentialService");
-exports.default = (function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, username, password, validateCredentials, error_1;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
-            case 0:
-                _b.trys.push([0, 2, , 3]);
-                _a = req.body, username = _a.username, password = _a.password;
-                return [4, (0, credentialService_1.validateCredentialsService)({ username: username, password: password })];
-            case 1:
-                validateCredentials = _b.sent();
-                res.status(200).json(validateCredentials);
-                return [3, 3];
-            case 2:
-                error_1 = _b.sent();
-                res.status(400).json(error_1.message);
-                return [3, 3];
-            case 3: return [2];
-        }
+var data_source_1 = require("../config/data-source");
+var Credentials_1 = require("../entities/Credentials");
+function uniqueUserAndPasswordMiddleware(req, res, next) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, username, password, existingUser, existingPassword;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, username = _a.username, password = _a.password;
+                    return [4, data_source_1.AppDataSource.getRepository(Credentials_1.Credential).findOneBy({
+                            username: username
+                        })];
+                case 1:
+                    existingUser = _b.sent();
+                    if (existingUser) {
+                        return [2, res.status(400).json({ error: "El username ya está en uso." })];
+                    }
+                    return [4, data_source_1.AppDataSource.getRepository(Credentials_1.Credential).findOneBy({
+                            password: password
+                        })];
+                case 2:
+                    existingPassword = _b.sent();
+                    if (existingPassword) {
+                        return [2, res.status(400).json({ error: "La contraseña ya está en uso." })];
+                    }
+                    next();
+                    return [2];
+            }
+        });
     });
-}); });
+}
+exports.default = uniqueUserAndPasswordMiddleware;

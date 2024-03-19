@@ -38,63 +38,102 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserByIdService = exports.createUserService = exports.getUsersService = void 0;
 var credentialService_1 = require("./credentialService");
-var users = [
-    {
-        id: 1,
-        name: "John Doe",
-        email: "john@example.com",
-        birthdate: "1990-05-15",
-        nDni: 12345678,
-        credentialsId: 101
-    },
-    {
-        id: 2,
-        name: "Jane Smith",
-        email: "jane@example.com",
-        birthdate: "1985-09-20",
-        nDni: 87654321,
-        credentialsId: 102
-    },
-    {
-        id: 3,
-        name: "Alice Johnson",
-        email: "alice@example.com",
-        birthdate: "1992-11-10",
-        nDni: 54321678,
-        credentialsId: 103
-    },
-    {
-        id: 4,
-        name: "Bob Brown",
-        email: "bob@example.com",
-        birthdate: "1988-03-25",
-        nDni: 98765432,
-        credentialsId: 104
-    }
-];
+var data_source_1 = require("../config/data-source");
+var Users_1 = require("../entities/Users");
 function getUsersService() {
-    return users;
+    return __awaiter(this, void 0, void 0, function () {
+        var users;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, data_source_1.AppDataSource.getRepository(Users_1.User).find({
+                        relations: {
+                            credential: true
+                        }
+                    })];
+                case 1:
+                    users = _a.sent();
+                    return [2, users];
+            }
+        });
+    });
 }
 exports.getUsersService = getUsersService;
 function getUserByIdService(id) {
-    return users.find(function (user) { return user.id === id; });
+    return __awaiter(this, void 0, void 0, function () {
+        var results;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4, data_source_1.AppDataSource.getRepository(Users_1.User).findOne({
+                        where: { id: id },
+                        relations: ['appointment']
+                    })];
+                case 1:
+                    results = _a.sent();
+                    if (!results) {
+                        throw new Error("No se encontr\u00F3 ning\u00FAn usuario con el ID ".concat(id, "."));
+                    }
+                    return [2, results];
+            }
+        });
+    });
 }
 exports.getUserByIdService = getUserByIdService;
-function createUserService(name, email, birthdate, nDni, username, password) {
+function createUserService(user, credential) {
     return __awaiter(this, void 0, void 0, function () {
-        var credentialsId, newUser;
+        var queryRunner, newUser, userCreated, results, credentialsId, error_1;
         return __generator(this, function (_a) {
-            credentialsId = (0, credentialService_1.createCredentialsService)(username, password);
-            newUser = {
-                id: users.length + 1,
-                name: name,
-                email: email,
-                birthdate: birthdate,
-                nDni: nDni,
-                credentialsId: credentialsId
-            };
-            users.push(newUser);
-            return [2, newUser];
+            switch (_a.label) {
+                case 0:
+                    if (Object.values(user).some(function (value) { return !value; })) {
+                        throw new Error("Los datos del usuario están incompletos");
+                    }
+                    if (Object.values(credential).some(function (value) { return !value; })) {
+                        throw new Error("Los datos de credenciales están incompletos");
+                    }
+                    if (user.nDni < -2147483648 || user.nDni > 2147483647) {
+                        throw new Error("ndni número está fuera del rango");
+                    }
+                    queryRunner = data_source_1.AppDataSource.createQueryRunner();
+                    return [4, queryRunner.connect()];
+                case 1:
+                    _a.sent();
+                    return [4, queryRunner.startTransaction()];
+                case 2:
+                    _a.sent();
+                    _a.label = 3;
+                case 3:
+                    _a.trys.push([3, 7, 8, 9]);
+                    newUser = {
+                        name: user.name,
+                        email: user.email,
+                        birthdate: user.birthdate,
+                        nDni: user.nDni,
+                    };
+                    return [4, data_source_1.AppDataSource.getRepository(Users_1.User).create(newUser)];
+                case 4:
+                    userCreated = _a.sent();
+                    return [4, data_source_1.AppDataSource.getRepository(Users_1.User).manager.save(userCreated)];
+                case 5:
+                    results = _a.sent();
+                    return [4, (0, credentialService_1.createCredentialsService)(credential, results.id)];
+                case 6:
+                    credentialsId = _a.sent();
+                    if (!credentialsId) {
+                        throw new Error("Usuario inexistente");
+                    }
+                    if (!userCreated) {
+                        throw new Error("Usuario no se ha creado");
+                    }
+                    return [2, results];
+                case 7:
+                    error_1 = _a.sent();
+                    queryRunner.rollbackTransaction();
+                    throw new Error(error_1.message);
+                case 8:
+                    queryRunner.release();
+                    return [7];
+                case 9: return [2];
+            }
         });
     });
 }
